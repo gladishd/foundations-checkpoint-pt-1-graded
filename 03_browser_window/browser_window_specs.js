@@ -29,6 +29,8 @@ describe('BrowserWindow', () => {
       { tabURL: 'netflix.com' },
     ]);
 
+    expect(chromeWindowTwo.hasOwnProperty('joinWindows')).toBe(false);
+
     chromeWindow.joinWindows(chromeWindowTwo);
     expect(chromeWindow.tabs.length).toBe(3);
     expect(chromeWindow.tabs).toEqual([
@@ -39,6 +41,8 @@ describe('BrowserWindow', () => {
   });
 
   it("has a newTab method on its prototype that creates a new tab and adds it to the window's tabs array", () => {
+    expect(firefoxWindow.hasOwnProperty('newTab')).toBe(false);
+
     firefoxWindow.newTab('instagram.com');
 
     expect(firefoxWindow.tabs.length).toBe(2);
@@ -63,6 +67,9 @@ describe('BrowserWindow', () => {
       { tabURL: 'twitter.com' },
       { tabURL: 'gmail.com' },
     ]);
+
+    expect(randomWindow.hasOwnProperty('closeTab')).toBe(false);
+
     randomWindow.closeTab(1);
 
     expect(randomWindow.tabs).toEqual([
