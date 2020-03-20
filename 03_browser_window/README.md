@@ -13,7 +13,7 @@ The instance created from the `BrowserWindow` function should contain the follow
 In addition to the properties attached to the instance, the following methods should be accessible via the prototype chain:
 
 - `joinWindows` - accepts a browser window instance as an argument and merges the window's tabs into the tabs property
-  of the window `joinWindows` is called on.
+  of the window `joinWindows` is called on
 - `newTab` - creates a new tab object and adds it to the browser window's tabs array
-- `closeTab` - accepts a number argument that represents the index position in the array of tabs to remove, if every tab is removed, the default tab
-  will re-open
+- `closeTab` - accepts a number argument that represents the index position in the array of tabs to remove, **if every tab is removed, the default tab
+  will re-open**
