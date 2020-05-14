@@ -1,6 +1,6 @@
 ### Create Book
 
-#### 7.00 Points
+#### 8.00 Points
 
 Create the function `createBook` that returns a book instance (object) that represents a book. The instance created from the `createBook` function should contain the following properties:
 

@@ -1,6 +1,6 @@
 ### Create a Multiplication Table
 
-#### 4.00 Points
+#### 7.00 Points
 
 Create the function `multiplicationTable` that accepts two arguments
 

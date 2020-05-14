@@ -2,15 +2,22 @@
 /* eslint-disable no-undef */
 
 describe('findObjPropsHasOwn', () => {
-  function Rectangle(color, height, width) {
-    this.color = color;
-    this.height = height;
-    this.width = width;
-  }
 
-  Rectangle.prototype.getArea = function() {
-    return this.height * this.width;
-  };
+  const rectanglePrototype = {
+    getArea: function() {
+      return this.height * this.width;
+    }
+  }
+  function rectangle(color, height, width) {
+
+    const rectangleInstance = Object.create(rectanglePrototype);
+
+    rectangleInstance.color = color;
+    rectangleInstance.height = height;
+    rectangleInstance.width = width;
+
+    return rectangleInstance;
+  }
 
   it('prints out the key', () => {
     const greenRectangle = { color: 'green' };
@@ -25,13 +32,13 @@ describe('findObjPropsHasOwn', () => {
   });
 
   it("prints the keys belonging to the instance object, it excludes properties in the object's prototype chain", () => {
-    const blueRectangle = new Rectangle('blue', 5, 3);
+    const blueRectangle = rectangle('blue', 5, 3);
 
     expect(findObjPropsHasOwn(blueRectangle)).toBe('color, height, width');
   });
 
   it('it uses the `.hasOwnProperty` method', () => {
-    const purpleRectangle = new Rectangle('purple', 7, 2);
+    const purpleRectangle = rectangle('purple', 7, 2);
     spyOn(purpleRectangle, 'hasOwnProperty').and.callThrough(); // checks to see if hasOwnProperty is called
 
     findObjPropsHasOwn(purpleRectangle);
@@ -42,16 +49,21 @@ describe('findObjPropsHasOwn', () => {
 });
 
 describe('findObjKeys', () => {
-  function Rectangle(color, height, width) {
-    this.color = color;
-    this.height = height;
-    this.width = width;
+  const rectanglePrototype = {
+    getArea: function() {
+      return this.height * this.width;
+    }
   }
+  function rectangle(color, height, width) {
 
-  Rectangle.prototype.getArea = function() {
-    return this.height * this.width;
-  };
+    const rectangleInstance = Object.create(rectanglePrototype);
 
+    rectangleInstance.color = color;
+    rectangleInstance.height = height;
+    rectangleInstance.width = width;
+
+    return rectangleInstance;
+  }
   it('prints out the key', () => {
     const greenRectangle = { color: 'green' };
 
@@ -65,13 +77,13 @@ describe('findObjKeys', () => {
   });
 
   it("prints the keys belonging to the instance object, it excludes properties in the object's prototype chain", () => {
-    const blueRectangle = new Rectangle('blue', 5, 3);
+    const blueRectangle = rectangle('blue', 5, 3);
 
     expect(findObjKeys(blueRectangle)).toBe('color, height, width');
   });
 
   it('it uses `Object.keys`', () => {
-    const purpleRectangle = new Rectangle('purple', 7, 2);
+    const purpleRectangle = rectangle('purple', 7, 2);
     spyOn(Object, 'keys').and.callThrough(); // checks if Object.keys is called
 
     findObjKeys(purpleRectangle);
